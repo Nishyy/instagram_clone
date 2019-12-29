@@ -7,13 +7,20 @@ import 'package:instagram_clone/screens/search_screen.dart';
 import 'feed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String userId;
+
+  HomeScreen({this.userId});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState(userId : userId);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentTab = 0;
   PageController _pageController;
+  String userId;
+
+  _HomeScreenState({this.userId});
 
   @override
   void initState() {
@@ -31,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(
             fontFamily: 'Billabong',
             fontSize: 35.0,
+            color: Colors.black,
           ),
         ),
       ),
@@ -41,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SearchScreen(),
           CreatePost(),
           ActivityScreen(),
-          ProfileScreen(),
+          ProfileScreen(userId: userId),
         ],
         onPageChanged: (index) {
           setState(() {
